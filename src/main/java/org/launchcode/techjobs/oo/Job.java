@@ -29,20 +29,31 @@ public class Job {
         this.positionType = positionType;
         this.coreCompetency = coreCompetency;
     }
+
+    @Override
+    public String toString() {
+        return "\nID: " + id + "\n" +
+                "Name: " + (name != null && !name.isEmpty() ? name : "Data not available") + "\n" +
+                "Employer: " + (employer != null && !employer.toString().isEmpty() ? employer : "Data not available") + "\n" +
+                "Location: " + (location != null && !location.toString().isEmpty() ? location : "Data not available") + "\n" +
+                "Position Type: " + (positionType != null && !positionType.toString().isEmpty()? positionType : "Data not available") + "\n" +
+                "Core Competency: " + (coreCompetency != null && !coreCompetency.toString().isEmpty() ? coreCompetency : "Data not available") + "\n";
+    }
+
     // TODO: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields
     //  match.
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Job job = (Job) o;
-        return id == job.id && Objects.equals(name, job.name) && Objects.equals(employer, job.employer) && Objects.equals(location, job.location) && Objects.equals(positionType, job.positionType) && Objects.equals(coreCompetency, job.coreCompetency);
+        if (!(o instanceof Job)) return false;
+        Job that = (Job) o;
+        return id == that.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, employer, location, positionType, coreCompetency);
+        return Objects.hash(id);
     }
 
 
